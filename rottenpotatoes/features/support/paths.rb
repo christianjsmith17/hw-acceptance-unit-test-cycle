@@ -25,7 +25,7 @@ module NavigationHelpers
       
     when /^the Similar Movies page for "(.*)"$/
       mv = Movie.find_by! :title => $1
-      search_directors_path(mv.id, mv.director)
+      search_directors_path(mv.id)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

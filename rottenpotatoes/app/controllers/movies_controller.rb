@@ -1,12 +1,15 @@
 class MoviesController < ApplicationController
   
   def same_director
-    director = params[:director]
+    id = params[:id]
+    @movie = Movie.find(id)
+    director = @movie.director
     
-    #if director.empty? 
-      #flash[:notice] = "'#{@movie.title}' has no director info" 
-      #redirect_to movies_path and return
-    #end
+    # handles whether to show similar movies based on if movie has a director
+    if director.empty?
+      flash[:notice] = "'#{@movie.title}' has no director info" 
+      redirect_to movies_path and return
+    end
     
     @movies = Movie.with_director(director)
   end
